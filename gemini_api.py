@@ -1,5 +1,5 @@
 import time
-import logging
+import os
 from google import genai
 from google.genai.errors import ServerError
 from dotenv import load_dotenv
@@ -58,11 +58,11 @@ def _try_model_with_retries(client: genai.Client, model: str) -> str:
                 contents=WORD_OF_THE_DAY_PROMPT
             )
             # Log raw response for debugging (visible in Streamlit Cloud logs)
-            logging.error(f"\n{'='*80}")
-            logging.error(f"RAW RESPONSE FROM {model}:")
-            logging.error(f"{'='*80}")
-            logging.error(response.text)
-            logging.error(f"{'='*80}\n")
+            os.write(1, b'\n' + b'='*80 + b'\n')
+            os.write(1, f'RAW RESPONSE FROM {model}:\n'.encode('utf-8'))
+            os.write(1, b'='*80 + b'\n')
+            os.write(1, response.text.encode('utf-8') + b'\n')
+            os.write(1, b'='*80 + b'\n\n')
             return response.text
         except Exception as e:
             is_quota_error, is_server_error = _is_retryable_error(e)

@@ -2,7 +2,6 @@ import streamlit as st
 from pathlib import Path
 from gemini_api import get_german_word_of_the_day
 import markdown
-import os
 
 # Page configuration
 st.set_page_config(
@@ -10,15 +9,6 @@ st.set_page_config(
     page_icon="🇩🇪",
     layout="centered"
 )
-
-import logging
-logging.basicConfig(level=logging.INFO)
-logging.info("This should work now")
-logging.error("This is an error log")
-# os.write("App started!!!")
-os.write(1,b'Something was executed - App started!!!\n')
-
-print("App started!!!")  # Appears in the right-side console
 
 # Load CSS from external file
 def load_css(file_path):
