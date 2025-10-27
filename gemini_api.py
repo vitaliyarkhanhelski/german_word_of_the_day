@@ -12,6 +12,21 @@ from constants import (
 )
 
 
+def _log_model_response(model: str, response_text: str) -> None:
+    """
+    Log model response to stdout for debugging in production.
+    
+    Args:
+        model: Name of the model used
+        response_text: Generated response text
+    """
+    os.write(1, b'\n' + b'='*80 + b'\n')
+    os.write(1, f'RAW RESPONSE FROM {model}:\n'.encode('utf-8'))
+    os.write(1, b'='*80 + b'\n')
+    os.write(1, response_text.encode('utf-8') + b'\n')
+    os.write(1, b'='*80 + b'\n\n')
+
+
 def _is_retryable_error(error: Exception) -> tuple[bool, bool]:
     """
     Check if error is quota-related or server-related.
@@ -57,12 +72,8 @@ def _try_model_with_retries(client: genai.Client, model: str) -> str:
                 model=model,
                 contents=WORD_OF_THE_DAY_PROMPT
             )
-            # Log raw response for debugging (visible in Streamlit Cloud logs)
-            os.write(1, b'\n' + b'='*80 + b'\n')
-            os.write(1, f'RAW RESPONSE FROM {model}:\n'.encode('utf-8'))
-            os.write(1, b'='*80 + b'\n')
-            os.write(1, response.text.encode('utf-8') + b'\n')
-            os.write(1, b'='*80 + b'\n\n')
+            # Log raw response for debugging in production
+            _log_model_response(model, response.text)
             return response.text
         except Exception as e:
             is_quota_error, is_server_error = _is_retryable_error(e)
