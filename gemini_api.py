@@ -56,6 +56,12 @@ def _try_model_with_retries(client: genai.Client, model: str) -> str:
                 model=model,
                 contents=WORD_OF_THE_DAY_PROMPT
             )
+            # Print raw response for debugging
+            print(f"\n{'='*80}")
+            print(f"RAW RESPONSE FROM {model}:")
+            print(f"{'='*80}")
+            print(response.text)
+            print(f"{'='*80}\n")
             return response.text
         except Exception as e:
             is_quota_error, is_server_error = _is_retryable_error(e)
