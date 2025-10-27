@@ -1,6 +1,6 @@
 import streamlit as st
 from pathlib import Path
-from main import get_german_word_of_the_day
+from gemini_api import get_german_word_of_the_day
 import markdown
 
 # Page configuration

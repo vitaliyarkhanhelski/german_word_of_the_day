@@ -27,12 +27,12 @@ This will open a beautiful web interface in your browser where you can generate 
 
 ### Run the script directly:
 ```bash
-python main.py
+python gemini_api.py
 ```
 
 ### Use as a module:
 ```python
-from main import get_german_word_of_the_day
+from gemini_api import get_german_word_of_the_day
 
 result = get_german_word_of_the_day()
 print(result)
