@@ -35,6 +35,9 @@ env/
 *.swo
 *~
 
+# macOS
+.DS_Store
+
 # Playwright MCP screenshots and artifacts
 .playwright-mcp/
 

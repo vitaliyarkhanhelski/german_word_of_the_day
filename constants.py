@@ -1,5 +1,38 @@
 """
-Constants for the German Word of the Day application.
+German Word of the Day - Configuration and Constants
+
+Central configuration file containing all prompts, model settings, and retry parameters.
+
+Constants:
+    WORD_OF_THE_DAY_PROMPT (str): 
+        Detailed Polish prompt for Gemini AI to generate German vocabulary.
+        Specifies exact markdown formatting, emoji usage, and structure requirements.
+    
+    PRIMARY_MODEL (str): 
+        Main Gemini model for word generation (gemini-2.5-pro).
+        Provides highest quality responses with detailed explanations.
+    
+    FALLBACK_MODEL (str): 
+        Backup Gemini model used when primary fails (gemini-2.5-flash).
+        Faster but slightly less detailed than primary model.
+    
+    MAX_RETRIES (int): 
+        Maximum number of retry attempts per model (default: 3).
+        Used for handling temporary server errors.
+    
+    RETRY_WAIT_BASE (int): 
+        Base wait time in seconds for exponential backoff (default: 3).
+        Actual wait time = RETRY_WAIT_BASE * (attempt + 1).
+
+Prompt Features:
+- Enforces exact markdown structure for consistent UI rendering
+- Requires IPA + Polish phonetic transcription
+- Mandates 3 example sentences with translations
+- Includes cultural insights (Ciekawostka) section
+- Uses emoji for visual appeal (🇩🇪 🇵🇱)
+- German words in Ciekawostka wrapped in backticks for code-style display
+
+Author: Configuration for Gemini-powered German learning app
 """
 
 # Gemini API prompt for generating German word of the day

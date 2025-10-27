@@ -1,3 +1,21 @@
+"""
+German Word of the Day - Streamlit Web Application
+
+A beautiful web interface for learning German vocabulary. Generates random words
+from the Top 2000 most common German words with IPA pronunciation, Polish translations,
+example sentences, and cultural insights using Google's Gemini AI.
+
+Features:
+- Modern purple gradient UI with smooth animations
+- IPA and Polish phonetic pronunciation guide
+- Real-world example sentences with translations
+- Cultural insights and idioms
+- Balloon celebration effect on word generation
+- Session persistence for generated words
+
+Author: Powered by Gemini 2.5 Pro
+"""
+
 import streamlit as st
 from pathlib import Path
 from gemini_api import get_german_word_of_the_day

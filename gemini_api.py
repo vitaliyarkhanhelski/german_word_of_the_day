@@ -1,3 +1,34 @@
+"""
+German Word of the Day - Gemini API Integration
+
+Core module for generating German vocabulary using Google's Gemini AI models.
+Implements robust error handling with automatic retries and model fallback.
+
+Main Features:
+- Primary model: Gemini 2.5 Pro (best quality)
+- Fallback model: Gemini 2.5 Flash (when quota exceeded)
+- Exponential backoff retry logic for server errors (503, UNAVAILABLE)
+- Immediate fallback for quota errors (429, RESOURCE_EXHAUSTED)
+- Production logging to stdout for debugging
+
+Error Handling Strategy:
+1. Server errors (503, UNAVAILABLE): Retry with exponential backoff
+2. Quota errors (429, RESOURCE_EXHAUSTED): Immediately switch to Flash model
+3. Other errors: Fail immediately without retry
+
+Usage:
+    from gemini_api import get_german_word_of_the_day
+    
+    word = get_german_word_of_the_day()
+    print(word)
+
+Environment Requirements:
+    - GEMINI_API_KEY must be set in .env file
+    - Valid Google Gemini API key with sufficient quota
+
+Author: Powered by Google Gemini AI
+"""
+
 import time
 import os
 from google import genai
