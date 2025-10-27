@@ -35,3 +35,6 @@ env/
 *.swo
 *~
 
+# Playwright MCP screenshots and artifacts
+.playwright-mcp/
+

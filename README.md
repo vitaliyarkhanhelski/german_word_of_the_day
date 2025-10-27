@@ -18,6 +18,13 @@ A Python project that uses Google's Gemini 2.5 Pro model to generate a German wo
 
 ## Usage
 
+### Run the Streamlit Web App (Recommended):
+```bash
+streamlit run app.py
+```
+
+This will open a beautiful web interface in your browser where you can generate German words with a single button click!
+
 ### Run the script directly:
 ```bash
 python main.py
@@ -40,6 +47,7 @@ print(result)
 - Python 3.7+
 - genai
 - python-dotenv
+- streamlit
 
 ## Getting a Gemini API Key
 
